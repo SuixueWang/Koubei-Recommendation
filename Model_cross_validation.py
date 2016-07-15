@@ -6,7 +6,9 @@ import numpy as np
 import xgboost as xgb
 from sklearn.metrics import confusion_matrix
 
-# 自定义评价函数，f1_score
+'''
+函数功能: 自定义评价函数，f1_score
+'''
 def evalerror(preds, dtrain):
 
     labels = dtrain.get_label()
@@ -21,6 +23,9 @@ def evalerror(preds, dtrain):
     # print 'F1_Score:',F1_Score
     return 'f1score',F1_Score
 
+'''
+函数功能: 使用 logistic函数作为目标函数
+'''
 def logregobj(preds, dtrain):
     labels = dtrain.get_label()
     preds = 1.0 / (1.0 + np.exp(-preds))
@@ -29,7 +34,9 @@ def logregobj(preds, dtrain):
     return grad, hess
 
 
-
+'''
+函数功能: 线下交叉验证
+'''
 def cross_validation():
 
     dtrain = xgb.DMatrix('dataset_dmatrix/offline_0516_sim.train.buffer')
@@ -59,10 +66,17 @@ def train_fscore():
     # bst = xgb.train(param, dtrain, num_round,watchlist,feval=evalerror,maximize=True)
 
 
+'''
+主函数
+'''
 if __name__ == '__main__':
+
     time1 = time.time()
+
     # train_fscore()
+
     cross_validation()
+
     print 'Total time: ',time.time() - time1
 
 

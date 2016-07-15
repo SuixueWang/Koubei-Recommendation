@@ -24,10 +24,6 @@ def ExtNegY(x,y,ratio):
 		else:
 			x1.append(x[i,:])
 			y1.append(y[i])
-		# x0 = x[y == 0]
-		# y0 = y[y == 0]
-		# x1 = x[y == 1]
-		# y1 = y[y == 1]
 
 	train_size = 1.0 * len(y1) * ratio / len(y0)
 	x0, X_test, y0, Y_test = cross_validation.train_test_split(x0,\
